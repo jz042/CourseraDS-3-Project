@@ -1,0 +1,141 @@
+DATA SOURCE
+
+See ReadMe.md file for original collection methodology and data source
+
+ORIGINAL IMPORT
+
+Six csv files were imported from the original data set download. There are two set of data for the Test and Training groups.
+
+X_test (2947 obs, 561 var) - contains all experiment data for the test group
+Y_test (2947 obs, 1 var) - contains the activity listing for the test group
+subject_test (2947 obs, 1 var) - contains the subject IDs for the test group
+
+These three files were imported using read.table function and combined into a single table (Test) by column using cbind. There
+are 2947 observations in the table with 563 variables.
+
+X_train (7352 obs, 561 var) - contains all experiment data for the training group
+Y_train (7352 obs, 1 var) - contains the activity listing for the training group
+subject_train (7352 obs, 1 var) - contains the subject IDs for the training group
+
+These three files were imported using read.table function and combined into a single table (Training) by column using cbind. 
+There are 7452 observations in the table with 563 variables.
+
+COMBINED TABLE
+
+The Test group data table and the Training group data table were further combined into one table (alldata) using rbind. The
+combined table has 10299 observations with 563 variables.
+
+The column headings were revised based on the features.txt listing included in the original dataset download. Code was
+written in Excel using concatenate. Illegal characters [, (), and -] were removed during this step.
+
+A subset that only includes the mean and standard deviation columns was selected to create the MSdata table using grep. The
+MSdata table has 10299 observations with 82 variables.
+
+A new column ActivityName was added to provide description of the activities performed based on the Activity code as follows:
+1 WALKING
+2 WALKING_UPSTAIRS
+3 WALKING_DOWNSTAIRS
+4 SITTING
+5 STANDING
+6 LAYING
+
+The final scheme for the MSData table is as follows:
+
+Subject (char) - Subject ID
+ActivityName (char) - Activity performed
+
+The following numeric columns include the measurements based on each subject and activity.
+
+tBodyAccmeanX
+tBodyAccmeanY
+tBodyAccmeanZ
+tBodyAccstdX
+tBodyAccstdY
+tBodyAccstdZ
+tGravityAccmeanX
+tGravityAccmeanY
+tGravityAccmeanZ
+tGravityAccstdX
+tGravityAccstdY
+tGravityAccstdZ
+tBodyAccJerkmeanX
+tBodyAccJerkmeanY
+tBodyAccJerkmeanZ
+tBodyAccJerkstdX
+tBodyAccJerkstdY
+tBodyAccJerkstdZ
+tBodyGyromeanX
+tBodyGyromeanY
+tBodyGyromeanZ
+tBodyGyrostdX
+tBodyGyrostdY
+tBodyGyrostdZ
+tBodyGyroJerkmeanX
+tBodyGyroJerkmeanY
+tBodyGyroJerkmeanZ
+tBodyGyroJerkstdX
+tBodyGyroJerkstdY
+tBodyGyroJerkstdZ
+tBodyAccMagmean
+tBodyAccMagstd
+tGravityAccMagmean
+tGravityAccMagstd
+tBodyAccJerkMagmean
+tBodyAccJerkMagstd
+tBodyGyroMagmean
+tBodyGyroMagstd
+tBodyGyroJerkMagmean
+tBodyGyroJerkMagstd
+fBodyAccmeanX
+fBodyAccmeanY
+fBodyAccmeanZ
+fBodyAccstdX
+fBodyAccstdY
+fBodyAccstdZ
+fBodyAccmeanFreqX
+fBodyAccmeanFreqY
+fBodyAccmeanFreqZ
+fBodyAccJerkmeanX
+fBodyAccJerkmeanY
+fBodyAccJerkmeanZ
+fBodyAccJerkstdX
+fBodyAccJerkstdY
+fBodyAccJerkstdZ
+fBodyAccJerkmeanFreqX
+fBodyAccJerkmeanFreqY
+fBodyAccJerkmeanFreqZ
+fBodyGyromeanX
+fBodyGyromeanY
+fBodyGyromeanZ
+fBodyGyrostdX
+fBodyGyrostdY
+fBodyGyrostdZ
+fBodyGyromeanFreqX
+fBodyGyromeanFreqY
+fBodyGyromeanFreqZ
+fBodyAccMagmean
+fBodyAccMagstd
+fBodyAccMagmeanFreq
+fBodyBodyAccJerkMagmean
+fBodyBodyAccJerkMagstd
+fBodyBodyAccJerkMagmeanFreq
+fBodyBodyGyroMagmean
+fBodyBodyGyroMagstd
+fBodyBodyGyroMagmeanFreq
+fBodyBodyGyroJerkMagmean
+fBodyBodyGyroJerkMagstd
+fBodyBodyGyroJerkMagmeanFreq
+angle(tBodyAccMeangravity)
+angle(tBodyAccJerkMean)gravityMean)
+angle(tBodyGyroMeangravityMean)
+angle(tBodyGyroJerkMeangravityMean)
+angle(XgravityMean)
+angle(YgravityMean)
+angle(ZgravityMean)
+
+SUMMARY TABLE
+
+A final summary table (MSDataSummary) was created to summarize the average of each column of numeric data by Subject and ActivityName
+using ddply and colwise.
+
+The MSDataSummary table includes 180 observations with 82 variables.
