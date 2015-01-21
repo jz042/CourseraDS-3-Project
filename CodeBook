@@ -46,7 +46,7 @@ The final scheme for the MSData table is as follows:
 Subject (char) - Subject ID
 ActivityName (char) - Activity performed
 
-The following numeric columns include the measurements based on each subject and activity.
+The following numeric columns include the measurements based on each subject and activity. The units are radians/second. 
 
 tBodyAccmeanX
 tBodyAccmeanY
